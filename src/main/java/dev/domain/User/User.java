@@ -18,7 +18,7 @@ public class User {
     @Column(name = "id")
     private int id;
 
-    /*@Length(min = 5, message = "You have a problem in your fullname")*/
+    /*@Length(min = 5, message = "You have a problem in your fullname") */
     @NotNull
     @Column(name = "full_name")
     private String fullname;
