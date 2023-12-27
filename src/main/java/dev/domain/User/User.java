@@ -1,5 +1,7 @@
 package dev.domain.User;
 
+import dev.domain.Admin.DeliveryConfirmation;
+import dev.domain.Orphanage.OrphanageFoodRequest;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -8,6 +10,7 @@ import javax.validation.constraints.Past;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -56,6 +59,18 @@ public class User {
     @NotNull
     @Column(name="type")
     private String type;
+
+
+    @OneToMany(mappedBy = "confirmingEmployee")
+    private List<DeliveryConfirmation> deliveryConfirmations;
+
+
+    @OneToMany(mappedBy = "orphanageUser")
+    private List<OrphanageFoodRequest> orphanageFoodRequests;
+
+    @OneToMany(mappedBy = "assignedEmployee")
+    private List<OrphanageFoodRequest> assignedFoodRequests;
+
 
     public User() {
     }
