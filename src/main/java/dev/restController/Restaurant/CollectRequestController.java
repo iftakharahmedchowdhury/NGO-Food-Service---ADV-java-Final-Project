@@ -35,7 +35,7 @@ public class CollectRequestController {
     public String updateRequest(@PathVariable("id") int id, @RequestBody CollectRequest collectRequest) {
 
         collectRequestService.edit(collectRequest);
-        return "Successful";
+        return "Successful updated";
     }
 
     @GetMapping("/collectRequest/{id}")
