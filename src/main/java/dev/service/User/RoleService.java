@@ -1,6 +1,7 @@
 package dev.service.User;
 
 import dev.domain.User.Role;
+import dev.domain.User.User;
 import dev.repository.User.RoleRepository;
 import org.springframework.stereotype.Service;
 
@@ -24,4 +25,9 @@ public class RoleService {
     public List<Role> getAll() {
         return roleRepository.getAll();
     }
+
+    public Role getRoleById(int id){
+        return roleRepository.get(id);
+    }
+
 }

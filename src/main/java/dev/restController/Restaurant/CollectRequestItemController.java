@@ -22,7 +22,7 @@ public class CollectRequestItemController {
         return collectRequestItemService.getAll();
     }
 
-    @GetMapping("/collectRequestItems/{requestId}")
+    @GetMapping("/collectRequestItemsByReqID/{requestId}")
     public List<CollectRequestsFoodItem> getItemsByRequestId(@PathVariable int requestId) {
         return collectRequestItemService.getItemsByRequestId(requestId);
     }
