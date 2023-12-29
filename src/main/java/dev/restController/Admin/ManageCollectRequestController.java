@@ -20,9 +20,9 @@ public class ManageCollectRequestController {
     }
 
     @PutMapping("/Admin/RejectRequest/{id}")
-    public String RejectRequest(@PathVariable("id") int id/*, @RequestBody CollectRequest collectRequest*/) {
+    public String RejectRequest(@PathVariable("id") int id) {
 
-        manageCollectRequestService.editForReject(id/*,collectRequest*/);
+        manageCollectRequestService.editForReject(id);
         return "Reqest Rejected";
     }
 }
