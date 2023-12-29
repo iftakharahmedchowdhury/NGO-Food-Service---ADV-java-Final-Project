@@ -18,6 +18,8 @@ public class DeliveryConfirmation {
 
     @Column(name = "ItemName", nullable = false)
     private String itemName;
+    @Column(name="FoodItemId",nullable = false)
+    private int foodItemId;
 
     @Column(name = "Quantity", nullable = false)
     private int quantity;
@@ -48,12 +50,15 @@ public class DeliveryConfirmation {
     @JoinColumn(name = "RequestID")
     private CollectRequest collectRequest;
 
+
+
     public DeliveryConfirmation() {
     }
 
-    public DeliveryConfirmation(int confirmationId, String itemName, int quantity, Date expiryDate, String deliveryLocation, LocalDateTime confirmationTime, LocalDateTime completionTime, String detailsComments, String deliveryStatus, User confirmingEmployee, CollectRequest collectRequest) {
+    public DeliveryConfirmation(int confirmationId, String itemName,int foodItemId, int quantity, Date expiryDate, String deliveryLocation, LocalDateTime confirmationTime, LocalDateTime completionTime, String detailsComments, String deliveryStatus, User confirmingEmployee, CollectRequest collectRequest) {
         this.confirmationId = confirmationId;
         this.itemName = itemName;
+        this.foodItemId = foodItemId;
         this.quantity = quantity;
         this.expiryDate = expiryDate;
         this.deliveryLocation = deliveryLocation;
@@ -63,6 +68,14 @@ public class DeliveryConfirmation {
         this.deliveryStatus = deliveryStatus;
         this.confirmingEmployee = confirmingEmployee;
         this.collectRequest = collectRequest;
+    }
+
+    public int getFoodItemId() {
+        return foodItemId;
+    }
+
+    public void setFoodItemId(int foodItemId) {
+        this.foodItemId = foodItemId;
     }
 
     public int getConfirmationId() {
