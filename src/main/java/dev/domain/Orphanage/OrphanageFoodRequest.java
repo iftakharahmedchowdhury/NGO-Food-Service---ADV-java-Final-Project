@@ -25,6 +25,8 @@ public class OrphanageFoodRequest {
 
     @Column(name = "OrphanageAddress")
     private String orphanageAddress;
+    @Column(name = "PeopleCount")
+    private int peopleCount;
 
     @Column(name = "AssignEmployee")
     private Integer assignEmployee;
@@ -44,12 +46,13 @@ public class OrphanageFoodRequest {
     public OrphanageFoodRequest() {
     }
 
-    public OrphanageFoodRequest(int requestId, int orphanageUserId, String orphanageName, String status, String orphanageAddress, Integer assignEmployee, LocalDateTime deliveryTime, User orphanageUser, User assignedEmployee) {
+    public OrphanageFoodRequest(int requestId, int orphanageUserId, String orphanageName, String status, String orphanageAddress,int peopleCount, Integer assignEmployee, LocalDateTime deliveryTime, User orphanageUser, User assignedEmployee) {
         this.requestId = requestId;
         this.orphanageUserId = orphanageUserId;
         this.orphanageName = orphanageName;
         this.status = status;
         this.orphanageAddress = orphanageAddress;
+        this.peopleCount=peopleCount;
         this.assignEmployee = assignEmployee;
         this.deliveryTime = deliveryTime;
         this.orphanageUser = orphanageUser;
@@ -94,6 +97,14 @@ public class OrphanageFoodRequest {
 
     public void setOrphanageAddress(String orphanageAddress) {
         this.orphanageAddress = orphanageAddress;
+    }
+
+    public int getPeopleCount() {
+        return peopleCount;
+    }
+
+    public void setPeopleCount(int peopleCount) {
+        this.peopleCount = peopleCount;
     }
 
     public Integer getAssignEmployee() {
