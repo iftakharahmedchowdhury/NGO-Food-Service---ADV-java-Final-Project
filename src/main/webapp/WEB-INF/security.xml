@@ -15,14 +15,43 @@
                                 access="isAuthenticated()" />
     </http>-->
     <security:http auto-config="true">
+        <!--cors-->
+       <!-- <security:cors configuration-source-ref="corsSource" />-->
+
+        <!--cors-->
         <intercept-url pattern="/users"
                        access="hasRole('ROLE_ADMIN')" />
         <security:intercept-url pattern="/all"
                                 access="permitAll" />
         <security:intercept-url pattern="/**"
                                 access="isAuthenticated()" />
-        <security:csrf disabled="true" />
+      <!--  <security:csrf disabled="true" />-->
     </security:http>
+
+    <!--cors activation bean-->
+    <b:bean id="corsConfiguration" class="org.springframework.web.cors.CorsConfiguration">
+        <b:property name="allowedOrigins">
+            <b:list>
+                <b:value>http://localhost:3000</b:value>
+            </b:list>
+        </b:property>
+        <b:property name="allowedMethods">
+            <b:list>
+                <b:value>GET</b:value>
+                <b:value>POST</b:value>
+            </b:list>
+        </b:property>
+        <!-- Other properties if needed -->
+    </b:bean>
+
+    <b:bean id="corsSource" class="org.springframework.web.cors.UrlBasedCorsConfigurationSource">
+        <b:property name="corsConfigurations">
+            <b:map>
+                <b:entry key="/**" value-ref="corsConfiguration" />
+            </b:map>
+        </b:property>
+    </b:bean>
+    <!--cors activation bean-->
 
     <!-- Fixed Username and Password
     <user-service>
