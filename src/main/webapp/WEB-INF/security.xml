@@ -15,7 +15,7 @@
                                 access="isAuthenticated()" />
     </http>-->
     <security:http auto-config="true">
-        <!--cors-->
+        <!--cors activation-->
        <!-- <security:cors configuration-source-ref="corsSource" />-->
 
         <!--cors-->
