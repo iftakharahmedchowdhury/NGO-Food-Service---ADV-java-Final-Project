@@ -20,9 +20,9 @@ public class InventoryTrackingController {
     }
 
 
-    @PostMapping("/storedFoodItem")
-    public String insertFoodItem(@RequestBody StoredFoodItem storedFoodItem) {
-        inventoryTrackingService.create(storedFoodItem);
+    @PostMapping("/storedFoodItem/{id}")
+    public String insertFoodItem(@PathVariable("id") int id/*,@RequestBody StoredFoodItem storedFoodItem*/) {
+        inventoryTrackingService.create(id/*,storedFoodItem*/);
         return "Successful";
     }
 

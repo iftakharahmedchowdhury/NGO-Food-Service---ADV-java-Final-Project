@@ -28,8 +28,9 @@ public class CollectRequestService {
     }
 
     public void create(CollectRequest collectRequest) {
-
+       
         collectRequestRepository.create(collectRequest);
+
     }
 
     public void delete(int id) {

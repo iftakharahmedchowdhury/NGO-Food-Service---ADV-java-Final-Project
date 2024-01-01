@@ -15,17 +15,22 @@
                                 access="isAuthenticated()" />
     </http>-->
     <security:http auto-config="true">
-        <!--cors activation-->
-       <!-- <security:cors configuration-source-ref="corsSource" />-->
 
-        <!--cors-->
+        <cors configuration-source-ref="corsSource" />
+
+
         <intercept-url pattern="/users"
                        access="hasRole('ROLE_ADMIN')" />
+        <security:intercept-url pattern="/authenticate"
+                                access="permitAll" />
+        <security:intercept-url pattern="/storedFoodItem"
+                                access="permitAll" />
         <security:intercept-url pattern="/all"
                                 access="permitAll" />
         <security:intercept-url pattern="/**"
                                 access="isAuthenticated()" />
-      <!--  <security:csrf disabled="true" />-->
+        <security:csrf disabled="true" />
+       <!-- <http-basic/>-->
     </security:http>
 
     <!--cors activation bean-->

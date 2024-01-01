@@ -28,7 +28,7 @@ public class ManageOrphanageFoodRequestController {
     @PutMapping("/orphanageFoodRequst/{id}")
     public String updateRequest(@PathVariable("id") int id, @RequestBody OrphanageFoodRequest orphanageFoodRequest) {
 
-        manageOrphanageFoodRequestService.edit(orphanageFoodRequest);
+        manageOrphanageFoodRequestService.edit(id ,orphanageFoodRequest);
         return "Successful updated";
     }
 

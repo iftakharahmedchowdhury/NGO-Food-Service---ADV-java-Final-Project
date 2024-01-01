@@ -52,6 +52,7 @@ public class CollectRequest{
     @OneToMany(mappedBy = "collectRequest", cascade = CascadeType.ALL)
     private Set<StoredFoodItem> storedFoodItems;
     public CollectRequest() {
+
     }
 
     public CollectRequest(int requestId, int restaurantUserId, LocalDateTime maxPreserveTime, String status, String collectionAddress, Integer assignedEmployeeId, LocalDateTime collectionTime, LocalDateTime completionTime, List<CollectRequestsFoodItem> foodItems) {

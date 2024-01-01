@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins ="*" )
 @RestController
 public class UserRestController {
 
@@ -36,8 +37,8 @@ public class UserRestController {
         userService.create(user);
         return "Successful";
     }
-    @PutMapping("/{users}")
-    public String updateUser(@PathVariable("users") int users, @RequestBody User user) {
+    @PutMapping("/users/{id}")
+    public String updateUser(@PathVariable("id") int id, @RequestBody User user) {
 
         userService.edit(user);
         return "Successful";

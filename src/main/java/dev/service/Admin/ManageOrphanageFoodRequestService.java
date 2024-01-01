@@ -30,7 +30,12 @@ public class ManageOrphanageFoodRequestService {
         manageOrphanageFoodRequestRepo.delete(id);
     }
 
-    public void edit (OrphanageFoodRequest of) {
-        manageOrphanageFoodRequestRepo.edit(of);
+    public void edit ( int id,OrphanageFoodRequest of ) {
+         OrphanageFoodRequest obj= findById(id);
+
+        obj.setStatus("Employee assigned");
+        obj.setAssignEmployee(of.getAssignEmployee());
+
+        manageOrphanageFoodRequestRepo.edit(obj);
     }
 }
