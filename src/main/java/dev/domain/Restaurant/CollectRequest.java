@@ -1,5 +1,7 @@
 package dev.domain.Restaurant;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import dev.domain.Admin.DeliveryConfirmation;
 import dev.domain.DeliveryMan.StoredFoodItem;
 
@@ -39,15 +41,18 @@ public class CollectRequest{
     @Column(name = "CompletionTime")
     private LocalDateTime completionTime;
 
-    @OneToMany(mappedBy = "requestId", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "requestId",cascade = CascadeType.ALL,fetch=FetchType.EAGER)
+    @JsonIgnore
     private List<CollectRequestsFoodItem> foodItems;
 
     @OneToMany(mappedBy = "collectRequest")
+
     private List<DeliveryConfirmation> deliveryConfirmations;
 
     @OneToMany(mappedBy = "collectRequest", cascade = CascadeType.ALL)
     private Set<StoredFoodItem> storedFoodItems;
     public CollectRequest() {
+
     }
 
     public CollectRequest(int requestId, int restaurantUserId, LocalDateTime maxPreserveTime, String status, String collectionAddress, Integer assignedEmployeeId, LocalDateTime collectionTime, LocalDateTime completionTime, List<CollectRequestsFoodItem> foodItems) {
@@ -133,4 +138,6 @@ public class CollectRequest{
     public void setFoodItems(List<CollectRequestsFoodItem> foodItems) {
         this.foodItems = foodItems;
     }
+
+
 }

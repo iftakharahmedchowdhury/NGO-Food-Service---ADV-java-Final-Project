@@ -19,6 +19,7 @@ public class UserService {
 
     public void create(User user) {
         user.setFullname(user.getFullname().toUpperCase());
+        user.setEnabled(0);
         userRepository.create(user);
     }
 
@@ -34,6 +35,7 @@ public class UserService {
         userRepository.delete(id);
     }
     public void edit (User user) {
+
         userRepository.edit(user);
     }
     public void allowUser (User user) {
