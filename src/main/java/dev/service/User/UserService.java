@@ -18,9 +18,13 @@ public class UserService {
     }
 
     public void create(User user) {
-        user.setFullname(user.getFullname().toUpperCase());
-        user.setEnabled(0);
-        userRepository.create(user);
+        try {
+            user.setFullname(user.getFullname().toUpperCase());
+            user.setEnabled(0);
+            userRepository.create(user);
+        } catch (RuntimeException e) {
+            throw new RuntimeException("User already exists");
+        }
     }
 
     public List<User> getAll() {

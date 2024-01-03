@@ -27,9 +27,10 @@ public class CollectRequestService {
         return collectRequestRepository.findById(requestId);
     }
 
-    public void create(CollectRequest collectRequest) {
+    public /*void*/int create(CollectRequest collectRequest) {
+        collectRequest.setStatus("Pending");
        
-        collectRequestRepository.create(collectRequest);
+        return collectRequestRepository.create(collectRequest);
 
     }
 

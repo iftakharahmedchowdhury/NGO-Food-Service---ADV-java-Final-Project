@@ -28,7 +28,7 @@ public class CollectRequestsFoodItem {
     private String description;
 
     @ManyToOne
-    @JoinColumn(name = "RequestID", referencedColumnName = "RequestID", insertable = false, updatable = false)
+    @JoinColumn(name = "RequestID"/*, referencedColumnName = "RequestID"*/, insertable = false, updatable = false)
     private CollectRequest collectRequest;
 
     public CollectRequestsFoodItem() {

@@ -21,28 +21,33 @@ public class InventoryTrackingService {
         this.collectRequestItemService=collectRequestItemService;
     }
 
-  /*  public void create(int id,StoredFoodItem sf) {
-      List <CollectRequestsFoodItem> clrData = collectRequestItemService.getItemsByRequestId(id);
 
-        for (CollectRequestsFoodItem item : clrData) {
-            sf.setCollectRequest(clrData);
-            inventoryTrackingRepo.create();
-        }
-    }*/
   public void create(int id/*, StoredFoodItem sf*/) {
       List<CollectRequestsFoodItem> clrData = collectRequestItemService.getItemsByRequestId(id);
 
       for (CollectRequestsFoodItem collectRequestsFoodItem : clrData) {
-          StoredFoodItem storedFoodItem = new StoredFoodItem();
-          storedFoodItem.setCollectRequest(collectRequestsFoodItem.getCollectRequest());
-          storedFoodItem.setItemName(collectRequestsFoodItem.getItemName());
-          storedFoodItem.setQuantity(collectRequestsFoodItem.getQuantity());
-          storedFoodItem.setExpiryDate(collectRequestsFoodItem.getExpiryDate());
-          storedFoodItem.setDescription(collectRequestsFoodItem.getDescription());
+          String itemName = collectRequestsFoodItem.getItemName();
+          StoredFoodItem existingItem = inventoryTrackingRepo.findByItemName(itemName);
 
-          inventoryTrackingRepo.create(storedFoodItem);
+          if (existingItem != null) {
+
+              int newQuantity = existingItem.getQuantity() + collectRequestsFoodItem.getQuantity();
+              existingItem.setQuantity(newQuantity);
+              inventoryTrackingRepo.edit(existingItem);
+          } else {
+
+              StoredFoodItem storedFoodItem = new StoredFoodItem();
+              storedFoodItem.setCollectRequest(collectRequestsFoodItem.getCollectRequest());
+              storedFoodItem.setItemName(itemName);
+              storedFoodItem.setQuantity(collectRequestsFoodItem.getQuantity());
+              storedFoodItem.setExpiryDate(collectRequestsFoodItem.getExpiryDate());
+              storedFoodItem.setDescription(collectRequestsFoodItem.getDescription());
+
+              inventoryTrackingRepo.create(storedFoodItem);
+          }
       }
   }
+
 
 
     public List<StoredFoodItem> getAll() {

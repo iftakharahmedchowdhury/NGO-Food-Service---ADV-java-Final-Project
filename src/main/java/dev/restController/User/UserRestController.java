@@ -2,6 +2,8 @@ package dev.restController.User;
 
 import dev.domain.User.User;
 import dev.service.User.UserService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -33,9 +35,13 @@ public class UserRestController {
     }
 
     @PostMapping("/users")
-    public String createUser(@RequestBody User user) {
-        userService.create(user);
-        return "Successful";
+    public ResponseEntity<String> createUser(@RequestBody User user) {
+        try {
+            userService.create(user);
+            return ResponseEntity.ok("User created successfully");
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("User already exists");
+        }
     }
     @PutMapping("/users/{id}")
     public String updateUser(@PathVariable("id") int id, @RequestBody User user) {
