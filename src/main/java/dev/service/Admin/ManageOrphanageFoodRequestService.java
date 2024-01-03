@@ -2,7 +2,9 @@ package dev.service.Admin;
 
 
 import dev.domain.Orphanage.OrphanageFoodRequest;
+import dev.domain.User.User;
 import dev.repository.Admin.ManageOrphanageFoodRequestRepo;
+import dev.service.User.UserService;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -11,12 +13,19 @@ import java.util.List;
 @Transactional
 public class ManageOrphanageFoodRequestService {
     private ManageOrphanageFoodRequestRepo manageOrphanageFoodRequestRepo;
+    private UserService userService;
 
-    public ManageOrphanageFoodRequestService(ManageOrphanageFoodRequestRepo manageOrphanageFoodRequestRepo) {
+    public ManageOrphanageFoodRequestService(ManageOrphanageFoodRequestRepo manageOrphanageFoodRequestRepo,UserService userService) {
         this.manageOrphanageFoodRequestRepo = manageOrphanageFoodRequestRepo;
+        this.userService=userService;
     }
 
     public void create(OrphanageFoodRequest of) {
+        User us =userService.get(of.getOrphanageUserId());
+        of.setOrphanageName(us.getFullname());
+        of.setStatus("In process");
+        of.setOrphanageAddress(us.getAddress());
+
         manageOrphanageFoodRequestRepo.create(of);
     }
 

@@ -17,9 +17,27 @@ public class UserRepository {
         this.sessionFactory = sessionFactory;
     }
 
-    public void create(User user) {
+   /* public void create(User user) {
         Session session = sessionFactory.getCurrentSession();
         session.save(user);
+    }*/
+   public void create(User user) {
+       Session session = sessionFactory.getCurrentSession();
+       String email = user.getEmail();
+       User existingUser = findByEmail(email);
+
+       if (existingUser != null) {
+           throw new RuntimeException("User already exists");
+       } else {
+           session.save(user);
+       }
+   }
+    public User findByEmail(String email) {
+        Session session = sessionFactory.getCurrentSession();
+        Query<User> query = session.createQuery("from User where email = :email", User.class);
+        query.setParameter("email", email);
+
+        return query.uniqueResult();
     }
 
     public void edit(User user) {

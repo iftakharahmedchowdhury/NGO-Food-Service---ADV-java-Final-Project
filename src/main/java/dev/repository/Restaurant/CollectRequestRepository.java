@@ -20,9 +20,10 @@ public class CollectRequestRepository {
         this.sessionFactory = sessionFactory;
     }
 
-    public void create(CollectRequest collectRequest) {
+    public /*void*/ int create(CollectRequest collectRequest) {
         Session session = sessionFactory.getCurrentSession();
-        session.save(collectRequest);
+       int id= (int) session.save(collectRequest);
+       return id;
     }
 
     public void edit(CollectRequest collectRequest) {

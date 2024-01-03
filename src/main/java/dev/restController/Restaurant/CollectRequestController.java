@@ -3,6 +3,7 @@ package dev.restController.Restaurant;
 import dev.domain.Restaurant.CollectRequest;
 import dev.service.Restaurant.CollectRequestItemService;
 import dev.service.Restaurant.CollectRequestService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,11 +26,16 @@ public class CollectRequestController {
     }
 
 
-    @PostMapping("/collectRequest")
+   /* @PostMapping("/collectRequest")
     public String createRequest(@RequestBody CollectRequest collectRequest) {
         collectRequestService.create(collectRequest);
         return "Successful";
-    }
+    }*/
+   @PostMapping("/collectRequest")
+   public ResponseEntity<String> createRequest(@RequestBody CollectRequest collectRequest) {
+       int requestId = collectRequestService.create(collectRequest);
+       return ResponseEntity.ok("Your request ID: " + requestId);
+   }
 
     @PutMapping("/collectRequest/{id}")
     public String updateRequest(@PathVariable("id") int id, @RequestBody CollectRequest collectRequest) {

@@ -23,7 +23,7 @@
                        access="hasRole('ROLE_ADMIN')" />
         <security:intercept-url pattern="/authenticate"
                                 access="permitAll" />
-        <security:intercept-url pattern="/storedFoodItem"
+        <security:intercept-url pattern="/storedFoodItem/**"
                                 access="permitAll" />
         <security:intercept-url pattern="/all"
                                 access="permitAll" />
@@ -44,6 +44,7 @@
             <b:list>
                 <b:value>GET</b:value>
                 <b:value>POST</b:value>
+                <b:value>PUT</b:value>
             </b:list>
         </b:property>
         <!-- Other properties if needed -->
